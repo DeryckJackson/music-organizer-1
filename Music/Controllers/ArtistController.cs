@@ -24,7 +24,20 @@ namespace MusicOrganizer.Controllers
     public ActionResult Create(string artistName)
     {
       Artist newArtist = new Artist(artistName);
+      newArtist.Save();
       return RedirectToAction("Index");
+    }
+
+    [HttpPost("/artists/{artistId}/albums")]
+    public ActionResult Create(int artistId, string albumTitle)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Artist foundArtist = Artist.Find(artistId);
+      Album newAlbum = new Album(albumTitle, artistId);
+      List<Album> artistAlbums = foundArtist.Albums;
+      model.Add("albums", artistAlbums);
+      model.Add("artist", foundArtist);
+      return View("Show", model);
     }
   }
 }
