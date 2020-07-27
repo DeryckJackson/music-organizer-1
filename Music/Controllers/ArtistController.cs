@@ -28,6 +28,17 @@ namespace MusicOrganizer.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpGet("/artists/{id}")]
+    public ActionResult Show(int id)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Artist selectedArtist = Artist.Find(id);
+      List<Album> artistAlbums = selectedArtist.Albums;
+      model.Add("artist", selectedArtist);
+      model.Add("albums", artistAlbums);
+      return View(model);
+    }
+
     [HttpPost("/artists/{artistId}/albums")]
     public ActionResult Create(int artistId, string albumTitle)
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MusicOrganizer.Controllers
 {
-  public class AlbumController : Controller
+  public class AlbumsController : Controller
   {
     [HttpGet("/artists/{artistId}/albums/new")]
     public ActionResult New(int artistId)

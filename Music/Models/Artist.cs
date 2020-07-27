@@ -64,7 +64,7 @@ namespace MusicOrganizer.Models
       conn.Open();
 
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM `artists` WHERE id = @thisId;";
+      cmd.CommandText = @"SELECT * FROM `artists` WHERE artistId = @thisId;";
 
       MySqlParameter thisId = new MySqlParameter();
       thisId.ParameterName = "@thisId";
